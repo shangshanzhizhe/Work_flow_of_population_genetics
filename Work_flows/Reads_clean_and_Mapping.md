@@ -4,7 +4,7 @@
 ## 过滤序列文件 Clean Reads
 >以下三中方法选择一种
 ### 脚本过滤 Use scripts
-[PairEndMultyReadsQualityFilter.pl]
+[PairEndMultyReadsQualityFilter.pl](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Scripts/PairEndMultyReadsQualityFilter.pl)
 ```
 perl 01.PairEndMultyReadsQualityFilter.pl $prefix $fastq1 $fastq2
 ```
