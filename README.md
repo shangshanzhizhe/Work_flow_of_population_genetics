@@ -1,2 +1,0 @@
-# Work_flow_of_population_genetics
-整理常用的群体遗传学分析流程和脚本
