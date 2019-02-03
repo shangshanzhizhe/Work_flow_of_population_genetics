@@ -13,7 +13,7 @@ perl 01.PairEndMultyReadsQualityFilter.pl $prefix $fastq1 $fastq2
 >流程较新，笔者推荐
 ## 将reads比对到参考基因组 Mapping Reads to the reference geome
 ### 为参考基因组建立索引 Build index for reference genome
->分别使用[bwa](https://github.com/lh3/bwa), [samtools](https://github.com/samtools/samtools), [picard](https://broadinstitute.github.io/picard/)建立索引以便后续流程使用
+>分别使用[bwa](https://github.com/lh3/bwa), [samtools](https://github.com/samtools/samtools), [picard](https://broadinstitute.github.io/picard/)建立索引以便后续流程使用
 ```
 bwa index ref.fasta
 samtools faidx ref.fasta
@@ -39,4 +39,4 @@ java -jar GenomeAnalysisTK.jar -nt 30 -R ref.fasta -T RealignerTargetCreator -o 
 ```
 java -jar GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 03.realign/sample.realn.intervals -o 03.realign/sample.realn.bam -I 2.rmdup/sample.rmdup.bam 2>03.realign/sample.realn.bam.log
 ```
->GATK4简化了上述比对流程，后续步骤如果依然使用GATK进行Variant Calling， INDEL重新比对的部分将在后续步骤中完成，可视情况而定
+>GATK4简化了上述比对流程，后续步骤如果依然使用GATK进行Variant Calling, INDEL重新比对的部分将在后续步骤中完成，可视情况而定
