@@ -23,7 +23,7 @@ Version: None
 
 =head1 Usage Example
 
-remove.hdfilter.pl --input IN.vcf.gz --output OUT.vcf.gz --marker my_snp_filter --multi
+remove.hdfilter.pl --input IN.vcf.gz --output OUT.vcf.gz --type SNP --marker my_snp_filter --multi
 
 =cut
 
