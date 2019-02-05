@@ -7,5 +7,5 @@
 
 - SNP 鉴定和SNP特征
     - [序列过滤和比对](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Reads_clean_and_Mapping.md)
-    - [挖掘SNP和INDEL以及过滤](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/under_working.md)
+    - [获得遗传变异信息以及质量控制](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/under_working.md)
     
