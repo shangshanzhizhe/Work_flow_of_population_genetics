@@ -40,12 +40,13 @@ perl remove.hdfilter.pl --input Pop.HDflt.INDEL.vcf.gz --out Pop.HDflted.INDEL.v
 ```
 #### 编写脚本完成如下条件的过滤，提高SNP的准确率
 >使用的条件是经验条件，可以自行调整
-- 深度：过滤深度大于个体平均深度2倍或小于三分之一的为点
+- INDEL附近: INDEL附近的位点不准确，删除位于INDEL位置周围5bp的SNP
+- 深度: 过滤深度大于个体平均深度2倍或小于三分之一的为点
 - 质量: 过滤质量值(QUAL)小于20的位点
 - 哈迪温伯格平衡: 过滤统一群体哈迪温伯格统计P_HWE<0.01的位点
 - 位点频率：过滤在同一群体中位点频率小于0.2(按照个体数量确定)的位点
 - 重复序列：过滤存在于重复序列区间内的位点(少见)
-###### 哈迪温伯格平衡统计
+##### 哈迪温伯格平衡统计
 使用[VCFtools](http://vcftools.sourceforge.net/)
 ```
 vcftools --gzvcf IN.vcf.gz --keep Pop.list --hardy --out Pop.hardy
