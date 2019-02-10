@@ -17,7 +17,7 @@ perl 01.PairEndMultyReadsQualityFilter.pl $prefix $fastq1 $fastq2
 ```
 bwa index ref.fasta
 samtools faidx ref.fasta
-java -jar /home/share/software/picard/picard-tools-1.129/picard.jar CreateSequenceDictionary REFERENCE=ref.fasta OUTPUT=ref.fasta
+java -jar /home/share/software/picard/picard-tools-1.129/picard.jar CreateSequenceDictionary REFERENCE=ref.fasta OUTPUT=ref.dict
 ```
 ### 初次比对：使用BWA软件MEM模块，默认参数(双端测序) First mapping: Use the BWA MEM; default parameters (Pairwise sequenced file)
 ```
