@@ -47,7 +47,7 @@ samtools merge sample.sort.bam sample.L1.bam sample.L2.bam ...
 ### 去除重复的比对序列 Remove the duplicated Reads
 
 ```sh
-java -Xmx10g -jar picard.jar MarkDuplicates INPUT=01.bwa/sample.sort.bam OUTPUT=2.rehead/sample.rmdup.bam METRICS_FILE=02.rmdup/sample.dup.txt REMOVE_DUPLICATES=true ; samtools index 02.rmdup/sample.rmdup.bam
+java -Xmx10g -jar picard.jar MarkDuplicates INPUT=01.bwa/sample.sort.bam OUTPUT=02.rmdup/sample.rmdup.bam METRICS_FILE=02.rmdup/sample.dup.txt REMOVE_DUPLICATES=true ; samtools index 02.rmdup/sample.rmdup.bam
 ```
 
 #### 获得INDEL的区间: 使用[GATK](https://software.broadinstitute.org/gatk/) Get intervals of INDEL with GATK
