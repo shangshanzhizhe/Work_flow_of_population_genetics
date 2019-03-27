@@ -1,6 +1,6 @@
 # MSMC算法推测群体历史
 
-> 参考[MSMC官方指导](https://github.com/stschiff/msmc/blob/master/guide.md)
+> 参考[MSMC官方文档](https://github.com/stschiff/msmc/blob/master/guide.md)
 
 > 计算时一般选取平均深度较高且亲缘关系较远的个体代表群体，选择2-8个单倍型
 
@@ -45,7 +45,7 @@ shapeit -convert --input-haps 04.assemble/$pop.$chr --output-vcf 05.phased/$pop.
 >编写脚本，得到07.split.vcf/\$sample/\$sample.\$chr.final.vcf.gz
 
 ## 生成参考基因组的Mask bed参考文件
->参考[SNPable](http://lh3lh3.users.sourceforge.net/snpable.shtml)文档
+>参考[SNPable文档](http://lh3lh3.users.sourceforge.net/snpable.shtml)
 
 ### 将Fasta文件转换为Fastq文件
 ```sh
@@ -83,7 +83,7 @@ zcat 07.split.vcf/$sample/$sample.$chr.final.vcf.gz | bamCaller.py bamCaller.py 
 
 ## 生成MSMC的输入文件，使用[msmc-tools/generate_multihetsep.py](https://github.com/stschiff/msmc-tools/blob/master/generate_multihetsep.py)
 
-需要用几个单倍型计算就导入几个单倍型，下图是
+需要用几个单倍型计算就导入几个单倍型，下图是四个单倍型的情况
 
 ```sh
 generate_multihetsep.py --mask=covered_sites_sample1_chr1.bed.txt.gz  --mask=covered_sites_sample2_chr1.bed.txt.gz --mask=mappability_mask_chr1.bed.txt.gz sample1_chr1.vcf.gz sample2_chr1.vcf.gz
