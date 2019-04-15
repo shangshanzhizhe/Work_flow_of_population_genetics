@@ -66,7 +66,7 @@ cat 02.sam/xab.sam | grep -v "@" >> $pop.cat.sam
 ```
 ### 转换结果文件的格式
 ```sh
-$pop.cat.sam | gen_raw_mask.pl > rawMask_35.fa  
+cat $pop.cat.sam | gen_raw_mask.pl > rawMask_35.fa  
 gen_mask -l 35 -r 0.5 rawMask_35.fa > mask_35_50.fa  
 ```
 

@@ -6,6 +6,8 @@
 欢迎大家Pull Request\
 转载请联系shangzhezhang@gmail.com
 
+文中使用的软件需要自行安装，参考软件列表见[软件列表 Reference Software List](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/software_list.md)
+
 - SNP 鉴定和SNP特征
     - [序列过滤和比对](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Reads_clean_and_Mapping.md)
     - [获得遗传变异信息以及质量控制](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Call_variants_and_filtering.md)
