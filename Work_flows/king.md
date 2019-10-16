@@ -6,7 +6,7 @@
 ## 使用VCF作为输入文件，转换为plink的map格式
 
 ```sh
-vcftools --gzvcf All.pop.SNP.vcf.gz --keep Pop.list -out Pop
+vcftools --gzvcf All.pop.SNP.vcf.gz --keep Pop.list --plink -out Pop # 分群体的情况
 ```
 
 ## 使用Plink生成需要的文件
@@ -34,5 +34,5 @@ king -b Pop.bed --fam Pop.fam --bim Pop.bim -m Pop.map --related
 
 (0.1774, 0.354]     3rd Degree Relationship
 
-(0.354, )           Unrelated
+(0.354, )           Duplicated
 ```

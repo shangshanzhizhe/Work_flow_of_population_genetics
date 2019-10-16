@@ -8,7 +8,7 @@
 
 =head1 Contact & Version
 
-    uthor: Shangzhe Zhang, shangzhezhang@gmail.com
+    Author: Shangzhe Zhang, shangzhezhang@gmail.com
     Date: 2019.2.5
     Version: None
 
