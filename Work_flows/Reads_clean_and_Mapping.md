@@ -35,7 +35,7 @@ java -jar /home/share/software/picard/picard-tools-1.129/picard.jar CreateSequen
 ### 初次比对：使用BWA软件MEM模块，默认参数(双端测序) First mapping: Use the BWA MEM; default parameters (Pairwise sequenced file)
 
 ```sh
-bwa mem -t 30 -R '@RG\tID:$samplename\tPL:illumina\tPU:illumina\tLB:$samplename\tSM:$samplename\t' ref.fasta sample.1.fq.gz sample.2.fq.gz | samtools sort -O bam -T /tmp/sample -o 01.bwa/sample.sort.bam
+bwa mem -t 30 -R '@RG\tID:$samplename\tPL:illumina\tPU:illumina\tLB:$samplename\tSM:$samplename' ref.fasta sample.1.fq.gz sample.2.fq.gz | samtools sort -O bam -T /tmp/sample -o 01.bwa/sample.sort.bam
 ```
 
 ### 合并有多段序列的个体样品BAM文件 Merge the BAM files from different sequencing cell belongs to same sample
@@ -50,6 +50,8 @@ samtools merge sample.sort.bam sample.L1.bam sample.L2.bam ...
 java -Xmx10g -jar picard.jar MarkDuplicates INPUT=01.bwa/sample.sort.bam OUTPUT=02.rmdup/sample.rmdup.bam METRICS_FILE=02.rmdup/sample.dup.txt REMOVE_DUPLICATES=true ; samtools index 02.rmdup/sample.rmdup.bam
 ```
 
+>使用[GATK4](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/gatk4_workflow.md)可以跳过INDEL重新比对的部分
+
 #### 获得INDEL的区间: 使用[GATK](https://software.broadinstitute.org/gatk/) Get intervals of INDEL with GATK
 
 ```sh
@@ -62,4 +64,3 @@ java -jar GenomeAnalysisTK.jar -nt 30 -R ref.fasta -T RealignerTargetCreator -o 
 java -jar GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 03.realign/sample.realn.intervals -o 03.realign/sample.realn.bam -I 2.rmdup/sample.rmdup.bam 2>03.realign/sample.realn.bam.log
 ```
 
->GATK4简化了上述比对流程，后续步骤如果依然使用GATK进行Variant Calling, INDEL重新比对的部分将在后续步骤中完成，可视情况而定

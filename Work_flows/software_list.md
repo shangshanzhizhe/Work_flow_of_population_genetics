@@ -17,3 +17,4 @@
 |SNPable|1.0|http://lh3lh3.users.sourceforge.net/snpable.shtml|
 |KING|1.4|http://people.virginia.edu/~wc9c/KING/|
 |PLINK|v1.90b3y|https://www.cog-genomics.org/plink2|
+|vcffilter|v1.0|https://github.com/vcflib/vcflib|
