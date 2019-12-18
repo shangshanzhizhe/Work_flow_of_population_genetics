@@ -8,6 +8,7 @@
 >以下三中方法选择一种
 
 ### 脚本过滤 Use scripts
+
 [PairEndMultyReadsQualityFilter.pl](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Scripts/PairEndMultyReadsQualityFilter.pl)
 
 ```sh
@@ -63,4 +64,3 @@ java -jar GenomeAnalysisTK.jar -nt 30 -R ref.fasta -T RealignerTargetCreator -o 
 ```sh
 java -jar GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 03.realign/sample.realn.intervals -o 03.realign/sample.realn.bam -I 2.rmdup/sample.rmdup.bam 2>03.realign/sample.realn.bam.log
 ```
-

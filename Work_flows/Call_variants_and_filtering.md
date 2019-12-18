@@ -61,10 +61,10 @@ INDEL
 ```sh
 perl remove.hdfilter.pl --input Pop.HDflt.INDEL.vcf.gz --out Pop.HDflted.INDEL.vcf.gz --type INDEL --marker my_indel_filter
 ```
-### 后续过滤
 
 #### vcffilter
-```
+
+```sh
 vcffilter -f "DP > 10 & MQ > 30 & QD > 20" $vcf | gzip - > $vcf
 ```
 
@@ -83,8 +83,6 @@ vcffilter -f "DP > 10 & MQ > 30 & QD > 20" $vcf | gzip - > $vcf
 
 使用[VCFtools](http://vcftools.sourceforge.net/)
 
-```
+```sh
 vcftools --gzvcf IN.vcf.gz --keep Pop.list --hardy --out Pop.hardy
 ```
-
-

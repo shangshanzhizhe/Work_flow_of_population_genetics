@@ -1,4 +1,5 @@
 # 使用KING软件推算个体间亲缘关系
+
 >亲缘关系较近的个体在后续的计算中会导致误差，例如群体历史推算和模拟等，因此需要删除一些亲缘关系较近的个体
 
 软件版本为KING 1.4
@@ -25,7 +26,7 @@ king -b Pop.bed --fam Pop.fam --bim Pop.bim -m Pop.map --related
 
 ### 在king.kin0文件中的Kinship列:
 
-```
+```text
 (, 0.0442]  Unrelated
 
 (0.0442, 0.0884]    1st Degree Relationship

@@ -14,5 +14,6 @@
     - [特征统计](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/under_working.md)
 - 群体历史推测
     - [MSMC算法](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/msmc_demo.md)
+    - [PSMC算法](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/psmc.md)
 - 群体关系计算
     - [King计算个体间亲缘关系](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/king.md)

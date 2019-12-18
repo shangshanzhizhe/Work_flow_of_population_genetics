@@ -18,3 +18,4 @@
 |KING|1.4|http://people.virginia.edu/~wc9c/KING/|
 |PLINK|v1.90b3y|https://www.cog-genomics.org/plink2|
 |vcffilter|v1.0|https://github.com/vcflib/vcflib|
+|PSMC|0.6.4-r49|https://github.com/lh3/psmc|
