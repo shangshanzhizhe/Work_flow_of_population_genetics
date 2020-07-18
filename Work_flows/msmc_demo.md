@@ -24,7 +24,7 @@ samtools mpileup -q 20 -Q 20 -C 50 -u -r $chr -f $reference $sample1.bam $sample
 
 文件格式为：
 
-```
+```sh
 sample1\tbam1\tchr1
 sample2\tbam2\tchr1
 ...
@@ -62,26 +62,26 @@ shapeit -convert --input-haps 04.assemble/$pop.$chr --output-vcf 05.phased/$pop.
 ### 将Fasta文件转换为Fastq文件
 
 ```sh
-seqbility-20091110/splitfa ../Omu.final.fixname.assembly.flt.2k.fa  35 | split -l 20000000
+seqbility-20091110/splitfa ../Ref.fa  35 | split -l 20000000
 ```
 
 ### 将这些fastq文件分别比对到参考基因组
 
 ```sh
-bwa aln -t 30 -R 1000000 -O 3 -E 3 01.Reads/xaa | bwa samse -f 02.sam/xaa.sam $reference  - 01.Reads/xaa
+bwa aln -t 30 -R 1000000 -O 3 -E 3 01.Reads/xaa | bwa samse -f 02.sam/xaa.sam Ref.fa  - 01.Reads/xaa
 ```
 
 ### 合并sam文件，注意只保留一个sam文件头
 
 ```sh
-cat 02.sam/xaa.sam > $pop.cat.sam
-cat 02.sam/xab.sam | grep -v "@" >> $pop.cat.sam
+cat 02.sam/xaa.sam > Ref.cat.sam
+cat 02.sam/xab.sam | grep -v "@" >> Ref.cat.sam
 ```
 
 ### 转换结果文件的格式
 
 ```sh
-cat $pop.cat.sam | gen_raw_mask.pl > rawMask_35.fa  
+cat Ref.cat.sam | gen_raw_mask.pl > rawMask_35.fa  
 gen_mask -l 35 -r 0.5 rawMask_35.fa > mask_35_50.fa  
 ```
 
