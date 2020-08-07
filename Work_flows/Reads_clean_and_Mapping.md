@@ -19,7 +19,7 @@ perl 01.PairEndMultyReadsQualityFilter.pl $prefix $fastq1 $fastq2
 
 ### 使用scythe和sickle进行过滤 Clean with [Scythe](https://github.com/vsbuffalo/scythe) and [Sickle](https://github.com/najoshi/sickle)
 
->流程较新，笔者推荐
+>流程较新，但内存占用和读写占用都很高
 
 ## 将reads比对到参考基因组 Mapping Reads to the reference geome
 
@@ -51,15 +51,15 @@ samtools merge sample.sort.bam sample.L1.bam sample.L2.bam ...
 java -Xmx10g -jar picard.jar MarkDuplicates INPUT=01.bwa/sample.sort.bam OUTPUT=02.rmdup/sample.rmdup.bam METRICS_FILE=02.rmdup/sample.dup.txt REMOVE_DUPLICATES=true ; samtools index 02.rmdup/sample.rmdup.bam
 ```
 
->使用[GATK4](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/gatk4_workflow.md)可以跳过INDEL重新比对的部分
+### 使用[GATK4](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/gatk4_workflow.md)可以跳过以下INDEL重新比对
 
-#### 获得INDEL的区间: 使用[GATK](https://software.broadinstitute.org/gatk/) Get intervals of INDEL with GATK
+### 获得INDEL的区间: 使用[GATK](https://software.broadinstitute.org/gatk/) Get intervals of INDEL with GATK
 
 ```sh
 java -jar GenomeAnalysisTK.jar -nt 30 -R ref.fasta -T RealignerTargetCreator -o 03.realign/sample.realn.intervals -I 02.rehead/sample.rmdup.bam 2>03.realign/sample.realn.intervals.log
 ```
 
-#### 对这些区间重新比对 Realign on the INDEL intervals
+### 对这些区间重新比对 Realign on the INDEL intervals
 
 ```sh
 java -jar GenomeAnalysisTK.jar -R ref.fa -T IndelRealigner -targetIntervals 03.realign/sample.realn.intervals -o 03.realign/sample.realn.bam -I 2.rmdup/sample.rmdup.bam 2>03.realign/sample.realn.bam.log

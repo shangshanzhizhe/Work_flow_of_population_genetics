@@ -1,6 +1,6 @@
 # MSMC算法推测群体历史
 
-> 参考[MSMC官方文档](https://github.com/stschiff/msmc/blob/master/guide.md)
+> 参考[MSMC官方文档](https://github.com/stschiff/msmc/blob/master/guide.md)，python脚本一般使用python2解释
 
 > 计算时一般选取平均深度较高且亲缘关系较远的个体代表群体，选择2-8个单倍型
 

@@ -5,7 +5,7 @@
 ## 将bam文件转换为fastq格式的一致性序列
 
 ```sh
-samtools mpileup -C50 -uf ref.fa aln.bam | bcftools view -c - | vcfutils.pl vcf2fq -d $average_depth/3 -D $average_depth/3 -D 100 | gzip > diploid.fq.gz
+samtools mpileup -C50 -uf ref.fa aln.bam | bcftools call -c - | vcfutils.pl vcf2fq -d $average_depth/3 -D $average_depth/3 -D 100 | gzip > diploid.fq.gz
 ```
 
 ## 将fastq文件转换为psmcfa格式
