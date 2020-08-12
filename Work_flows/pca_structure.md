@@ -17,4 +17,4 @@ plink --pca --file $vcf
 最后生成两个文件：plink.eigenvec 和 plink.eigenval
 
 plink.eigenvec 记录每个个体在不同主成分中的位置
-plink.eigenval 记录每个主成分堆数据的解释度
+plink.eigenval 记录每个主成分对数据的解释度
