@@ -20,3 +20,5 @@
     - 群体关系计算
         - [King计算个体间亲缘关系](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/king.md)
         - [PCA分析群体结构](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
+    - 结构变异检测和群体遗传
+        - 结构变异检测 
