@@ -46,7 +46,7 @@ if ($outfile !~ /.*\.gz$/){
     $outfile = $outfile.".gz";
 }
 
-open OUT, "| gzip - > $outfile";
+open OUT, "| pigz - > $outfile";
 open IN, "zcat $infile |";
 while(<IN>){
     chomp;
