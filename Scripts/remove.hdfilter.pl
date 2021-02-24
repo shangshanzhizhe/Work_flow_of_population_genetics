@@ -37,7 +37,8 @@ GetOptions(
     "output:s" =>\$outfile,
     "multi"=>\$multi,
     "help"=>\$help,
-    "type:s"=>\$type
+    "type:s"=>\$type,
+    "marker:s"=>\$marker
 )；
 die `pod2text $0` if ($Help || ! $marker);
 undef($multi) if ($type eq "INDEL");
