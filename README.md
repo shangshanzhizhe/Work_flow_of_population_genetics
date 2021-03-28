@@ -33,6 +33,6 @@
         - [PCA分析群体结构](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
     - 结构变异检测和群体遗传
         - [结构变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/structure_variation.md)
-- 植物基因组组装和个性化分析(以[花苜蓿](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13363)基因组学研究为例)
-    - [相关流程和命令行]（https://github.com/yinm2018/Medicago_ruthenica_genome）
+- 植物基因组组装和个性化分析 (以[花苜蓿](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13363)基因组学研究为例)
+    - [相关流程和命令行](https://github.com/yinm2018/Medicago_ruthenica_genome)
     
