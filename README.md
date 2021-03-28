@@ -5,8 +5,7 @@
 ## 在学习中同步整理一些群体遗传学分析中常用的流程和脚本
 
 > 记录相关流程和脚本方便自己和大家参考\
-欢迎大家Pull Request\
-转载请联系shangzhezhang@gmail.com
+欢迎大家Pull Request
 
 文中使用的参考软件列表见[软件列表 Reference Software List](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/software_list.md)
 
