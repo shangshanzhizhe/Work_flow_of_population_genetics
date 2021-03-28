@@ -11,9 +11,12 @@
   <img src="https://contrib.rocks/image?repo=shangshanzhizhe/Work_flow_of_population_genetics" />
 </a>
 
+>[Mou Yin](https://github.com/yinm2018): 看看我写的基因组学研究流程！\
+[Hermiolee1](https://github.com/Hermiolee1): 我占坑的，怎么了嘛
 
 文中使用的参考软件列表见[软件列表 Reference Software List](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/software_list.md)
 
+### 目录
 - 生物信息工具——[我的关注](https://github.com/shangshanzhizhe?tab=stars)
 - 重测序和群体遗传
     - 变异鉴定和变异特征
@@ -30,3 +33,6 @@
         - [PCA分析群体结构](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
     - 结构变异检测和群体遗传
         - [结构变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/structure_variation.md)
+- 植物基因组组装和个性化分析(以[花苜蓿](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13363)基因组学研究为例)
+    - [相关流程和命令行]（https://github.com/yinm2018/Medicago_ruthenica_genome）
+    
