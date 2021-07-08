@@ -25,7 +25,7 @@ delly call -g $reference -v all.sites.bcf -o $name1.geno.bcf $name1.bam
 #### 如果使用Delly的结果，合并后转为vcf格式
 
 ```
-delly merge -m id -O b -o merge.final.bcf $name1.geno.bcf $name2.geno.bcf $name3.geno.bcf ...
+bcftools merge -m id -O b -o merge.final.bcf $name1.geno.bcf $name2.geno.bcf $name3.geno.bcf ...
 ```
 
 #### 要合并多个软件的结果，直接将个体bcf转为vcf格式
@@ -89,7 +89,7 @@ for $sample in {$samples}; do echo "$sample" > keep.list; vcftools --vcf manta.o
 ```
 for $sample in {$samples}; do echo "$sample.lumpy.vcf\n$sample.delly.vcf\n$sample.manta.vcf" > sample.list
 
-SURVIVOR merge sample.list 2 1 1 0 50 $sample.all.vcf
+SURVIVOR merge sample.list 1000 2 1 1 0 50 $sample.all.vcf
 ```
 
 #### 过滤比对深度低的SV假阳性区域
