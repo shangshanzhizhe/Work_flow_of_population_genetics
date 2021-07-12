@@ -95,7 +95,7 @@ SURVIVOR merge sample.list 1000 2 1 1 0 50 $sample.all.vcf
 #### 过滤比对深度低的SV假阳性区域
 
 ```
-samtools view -H $name.bam > $name.lowMQ.sam; samtools view 00.bam.files/DYGZ18123.realn.bam | awk '$5<5 {print $0}' >> $name.lowMQ.sam; samtools view -S -b -h $name.lowMQ.sam > $name.lowMQ.bam; rm -rf $name.lowMQ.sam; samtools depth $name.lowMQ.bam > $name.lowMQ.cov; SURVIVOR bincov $name.lowMQ.cov 10 2 > $name.lowMQ.bed
+samtools view -H $name.bam > $name.lowMQ.sam; samtools view 00.bam.files/$name.realn.bam | awk '$5<5 {print $0}' >> $name.lowMQ.sam; samtools view -S -b -h $name.lowMQ.sam > $name.lowMQ.bam; rm -rf $name.lowMQ.sam; samtools depth $name.lowMQ.bam > $name.lowMQ.cov; SURVIVOR bincov $name.lowMQ.cov 10 2 > $name.lowMQ.bed
 
 vcftools --vcf $sample.all.vcf --exclude-bed $name.lowMQ.bed --recode --recode-INFO-all --out $sample.final
 ```
