@@ -18,6 +18,7 @@
 
 ### 目录
 - 生物信息工具——[我的关注](https://github.com/shangshanzhizhe?tab=stars)
+- [常用数据处理Tips](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/data_processing.md)
 - 重测序和群体遗传
     - 变异鉴定和变异特征
         - [序列过滤和比对](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Reads_clean_and_Mapping.md)
@@ -31,9 +32,10 @@
     - 群体关系计算
         - [King计算个体间亲缘关系](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/king.md)
         - [PCA分析群体结构](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
-    - 结构变异检测和群体遗传
-        - [二代测序 结构变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/structure_variation.md)
-        - [三代测序 结构变异检测](https://github.com/shangshanzhizhe/YakPopulationSV)
+- 结构变异检测和群体遗传
+    - [二代测序 结构变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/structure_variation.md)
+    - [三代测序 结构变异检测](https://github.com/shangshanzhizhe/YakPopulationSV)
+- [Nanopore测序数据甲基化检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/methylation.md)
 - 植物基因组组装和个性化分析 (以[花苜蓿](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13363)基因组学研究为例)
     - [相关流程和命令行](https://github.com/yinm2018/Medicago_ruthenica_genome)
     
