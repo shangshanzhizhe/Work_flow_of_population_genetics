@@ -5,11 +5,6 @@
 记录相关流程和脚本方便自己和大家参考\
 欢迎大家Pull Request
 
-### 下一（亿）步
-
-- [ ] 下一步：将以下一些流程写为snakemake workflow
-- [ ] 下一步：将以下一些流程装进conda
-
 ### 贡献者们
 
 <a href="https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/graphs/contributors">
@@ -20,6 +15,16 @@
 [Hermiolee1](https://github.com/Hermiolee1): 我占坑的，怎么了嘛
 
 文中使用的参考软件列表见[软件列表 Reference Software List](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/software_list.md)
+
+### 下一步
+
+- [ ] 测试和更新bwa-mem2/minimap2比对流程
+- [ ] 测试和更新二代测序SV鉴定流程
+
+### 下亿步
+
+- [ ] 下一步：将以下一些流程写为snakemake workflow
+- [ ] 下一步：将以下一些流程装进conda
 
 ### 目录
 - 生物信息工具——[我的关注](https://github.com/shangshanzhizhe?tab=stars)
