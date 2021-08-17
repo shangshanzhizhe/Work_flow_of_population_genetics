@@ -5,6 +5,11 @@
 记录相关流程和脚本方便自己和大家参考\
 欢迎大家Pull Request
 
+### 下一（亿）步
+
+- [ ] 下一步：将以下一些流程写为snakemake workflow
+- [ ] 下一步：将以下一些流程装进conda
+
 ### 贡献者们
 
 <a href="https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/graphs/contributors">
