@@ -1,4 +1,4 @@
-# SNP calling 的snakemake流程
+# SNP calling 的snakemake流程 (不能用！)
 
 ## 依赖环境和软件
 
