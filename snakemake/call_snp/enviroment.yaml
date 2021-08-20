@@ -4,4 +4,9 @@ channels:
 dependencies:
   - python =3.6
   - fastp =0.20.1
-  - fastx_toolkit =0.0.14
+  - fastq_utils =0.25.1
+  - samtools =1.13
+  - bwa =0.7.17
+
+  
+

@@ -30,7 +30,7 @@
 - 生物信息工具——[我的关注](https://github.com/shangshanzhizhe?tab=stars)
 - [常用数据处理Tips](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/data_processing.md)
 - 重测序和群体遗传
-    - 变异鉴定和变异特征 ([snakemake自动化](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/tree/master/snakemake))
+    - 变异鉴定和变异特征 ([snakemake自动化](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/tree/master/snakemake/call_snp))
         - [序列过滤和比对](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Reads_clean_and_Mapping.md)
             - **Nanopore**测序结果过滤:[Nanoflt](https://github.com/wdecoster/nanofilt)
             - **Nanopore**测序结果可视化:[NanoPlot](https://github.com/wdecoster/NanoPlot)

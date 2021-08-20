@@ -7,7 +7,9 @@
 - **Python** == 3.6
 - Snakemake >= 5.24.1
 - fastq == 0.20.1
-- FASTX-Toolkit == 0.0.14
+- fastq utils == 0.25.1
+- bwa == 0.7.17
+- samtools == 1.13
 
 ### Conda 安装依赖环境
 

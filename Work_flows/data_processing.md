@@ -13,3 +13,7 @@ done
 zcat all.vcf.gz | grep "^#" > vcf.header
 tabix all.vcf.gz Chr1:1-1000 | cat vcf.header - > Chr1-1-1000.vcf.gz
 ```
+生成基因组上的window bed文件
+```
+bedtools makewindows -g genome.chr.ln -w 100000 > 100K.genome.bed
+```
