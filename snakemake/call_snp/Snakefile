@@ -1,0 +1,229 @@
+configfile: "config.yaml"
+
+
+rule all:
+    input:
+        expand("raw_stat/{sample}.stat.txt", sample=config["samples"]),
+        expand("clean_stat/{sample}.stat.txt", sample=config["samples"]),
+        "reference/ref.bwa_index.done",
+        config['reference'] + ".fai",
+        expand("duplicate_removed/{sample}.rmdup.bam", sample=config["samples"]),
+        expand("duplicate_removed/{sample}.rmdup.bam.bai", sample=config["samples"]),
+        "result_vcfs/combined.vcf.gz",
+        "result_vcfs/combined.indel.filtered.vcf.gz",
+        "result_vcfs/combined.snp.filtered.vcf.gz"
+
+
+rule stat_fastq:
+    input: 
+        fw="raw_fastq/{sample}.1.fq.gz",
+        re="raw_fastq/{sample}.2.fq.gz"
+    output:
+        "raw_stat/{sample}.stat.txt"
+    shell:
+        "fastq_info {input.fw} {input.re} 2> {output}"
+
+rule clean_reads: ## 修改线程数,log等
+    input:
+        fq1="raw_fastq/{sample}.1.fq.gz",
+        fq2="raw_fastq/{sample}.2.fq.gz"
+    output:
+        fq1="clean_reads/{sample}.1.clean.fq.gz",
+        fq2="clean_reads/{sample}.2.clean.fq.gz",
+        json="clean_reads/{sample}.json",
+        html="clean_reads/{sample}.html"
+    threads:
+        config['fastp_threads']
+    log:
+        "logs/fastp/{sample}.clean.log"
+    shell:
+        "fastp -w {threads} -i {input.fq1} -I {input.fq2} -o {output.fq1} -O {output.fq2} -j {output.json} -h {output.html} 2> {log}"
+
+
+rule stat_clean:
+    input: 
+        fw="clean_reads/{sample}.1.clean.fq.gz",
+        re="clean_reads/{sample}.2.clean.fq.gz"
+    output:
+        "clean_stat/{sample}.stat.txt"
+    shell:
+        "fastq_info {input.fw} {input.re} 2> {output}"
+
+
+rule bwa_index:
+    input:
+        config['reference']
+    output:
+        done=touch("reference/ref.bwa_index.done")
+    log:
+        "logs/index/bwa_index.log"
+    shell:
+        "bwa index {input} 2> {log}"
+
+
+rule faidx_index:
+    input:
+        config['reference']
+    output:
+        config['reference'] + ".fai"
+    shell:
+        "samtools faidx {input}"
+
+
+rule bwa_mem:
+    input:
+        check="reference/ref.bwa_index.done",
+        ref=config['reference'],
+        fq1="clean_reads/{sample}.1.clean.fq.gz",
+        fq2="clean_reads/{sample}.2.clean.fq.gz"
+    output:
+        temp("mapped_reads/{sample}.bam")
+    params:
+        rg=r"@RG\tID:{sample}\tPL:illumina\tPU:illumina\tLB:{sample}\tSM:{sample}"
+    log:
+        "logs/bwa_mem/{sample}.log"
+    threads: config['bwa_threads']
+    shell:
+        "(bwa mem -R '{params.rg}' -t {threads} {input.ref} {input.fq1} {input.fq2} | "
+        "samtools view -Sb - > {output}) 2> {log}"
+
+
+rule samtools_sort:
+    input:
+        "mapped_reads/{sample}.bam"
+    output:
+        temp("sorted_reads/{sample}.sort.bam")
+    shell:
+        "samtools sort -T sorted_reads/{wildcards.sample} "
+        "-O bam {input} > {output}"
+
+
+rule samtools_index:
+    input:
+        "sorted_reads/{sample}.sort.bam"
+    output:
+        "sorted_reads/{sample}.sort.bam.bai"
+    shell:
+        "samtools index {input}"
+
+rule picard_index:
+    input:
+        config['reference']
+    output:
+        re.sub(r'.fasta', '.dict', config['reference'])
+    params:
+        picard_path=config['picard_path']
+    log:
+        "logs/index/picard_index.log"
+    shell:
+        "java -jar {params.picard_path} CreateSequenceDictionary REFERENCE={input} OUTPUT={output} 2> {log}"
+
+rule bam_rmdup:
+    input:
+        bam="sorted_reads/{sample}.sort.bam",
+        dict=re.sub(r'.fasta', '.dict', config['reference'])
+    output:
+        bam=protected("duplicate_removed/{sample}.rmdup.bam"),
+        metrix="duplicate_removed/{sample}.dup.txt"
+    params:
+        picard_path=config['picard_path']
+    log:
+        "logs/rmdup/{sample}.log"
+    shell:
+        "java -Xmx10g -jar {params.picard_path} MarkDuplicates INPUT={input.bam} OUTPUT={output.bam} METRICS_FILE={output.metrix} REMOVE_DUPLICATES=true"
+
+rule index_rmdup:
+    input:
+        "duplicate_removed/{sample}.rmdup.bam"
+    output:
+        "duplicate_removed/{sample}.rmdup.bam.bai"
+    shell:
+        "samtools index {input}"
+
+rule haplo: ## 线程数？
+    input:
+        bam="duplicate_removed/{sample}.rmdup.bam",
+        bai="duplicate_removed/{sample}.rmdup.bam.bai",
+        ref=config['reference'],
+        idx=config['reference'] + ".fai"
+    output:
+        "gvcf/{sample}.g.vcf.gz"
+    resources:
+        mem_mb=1024
+    shell:
+        "gatk HaplotypeCaller -R {input.ref} --emit-ref-confidence GVCF -I {input.bam} -O {output}"
+
+rule combine_gvcf:
+    input:
+        gvcf=expand("gvcf/{sample}.g.vcf.gz", sample=config['samples']),
+        fa=config['reference']
+    output:
+        "combined.g.vcf.gz"
+    shell:
+        "gatk CombineGVCFs -R {input.fa} $(echo {input.gvcf}) | sed 's/data/ --variant data/g') -O {output} 2> {log}"
+        
+
+rule joint_calling:
+    input:
+        ref=config['reference'],
+        gvcf="combined.g.vcf.gz"
+    output:
+        vcf=protected("result_vcfs/combined.vcf.gz")
+    log:
+        "logs/gatk/genotypegvcfs.log"
+    shell:
+        "gatk GenotypeGVCFs -R {input.ref} -V {input.gvcf} -O {output.vcf} 2> {log}"
+
+rule snp_select:
+    input:
+        vcf="result_vcfs/combined.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.snp.vcf.gz"
+    log:
+        "logs/gatk/select/snp.log"
+    params:
+        extra="--select-type-to-include SNP"
+    shell:
+        "gatk SelectVariants {params.extra} -V {input.vcf} -O {output.vcf} 2> {log}"
+
+rule indel_select:
+    input:
+        vcf="result_vcfs/combined.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.indel.vcf.gz"
+    log:
+        "logs/gatk/select/indel.log"
+    params:
+        extra="--select-type-to-include INDEL"
+    wrapper:
+        "gatk SelectVariants {params.extra} -V {input.vcf} -O {output.vcf} 2> {log}"
+
+rule snp_filter:
+    input:
+        vcf="result_vcfs/combined.snp.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.snp.filtered.vcf.gz"
+    log:
+        "logs/gatk/filter/snp.log"
+    params:
+        filters="myfilter",
+        expression="QD < 2.0 || MQ < 40.0 || FS > 60.0 || SOR > 3.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"
+    shell:
+        "gatk VariantFiltration -V {input.vcf} --filter-expression \"{params.expression}\" --filter-name \"{params.filters}\" -O {output.vcf} 2> {log}"
+
+rule indel_filter:
+    input:
+        vcf="result_vcfs/combined.indel.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.indel.filtered.vcf.gz"
+    log:
+        "logs/gatk/filter/indel.log"
+    params:
+        filters="myfilter",
+        expression="QD < 2.0 || FS > 200.0 || SOR > 10.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"
+    shell:
+        "gatk VariantFiltration -V {input.vcf} --filter-expression \"{params.expression}\" --filter-name \"{params.filters}\" -O {output.vcf} 2> {log}"

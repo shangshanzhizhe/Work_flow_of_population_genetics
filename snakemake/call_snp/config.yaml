@@ -1,0 +1,10 @@
+samples:
+    E_rothschildi: "raw_fastq/E_rothschildi"
+    E_rothschildi5: "raw_fastq/E_rothschildi5"
+
+reference: "reference/ref.fasta"
+
+bwa_threads: 30
+fastp_threads: 8
+
+picard_path: "/data/00/software/picard/picard.2.25.0.jar"
