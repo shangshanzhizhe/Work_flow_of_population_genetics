@@ -1,4 +1,6 @@
-# SNP calling 的snakemake流程 (不能用！)
+# SNP calling 的snakemake流程
+
+> v1.0 只能使用基因组全长完成所有流程
 
 ## 依赖软件和环境
 
