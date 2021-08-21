@@ -17,3 +17,8 @@ tabix all.vcf.gz Chr1:1-1000 | cat vcf.header - > Chr1-1-1000.vcf.gz
 ```
 bedtools makewindows -g genome.chr.ln -w 100000 > 100K.genome.bed
 ```
+
+检查bam文件的完整性
+```
+samtools quickcheck -v *.bam > bad_bams.fofn   && echo 'all ok' || echo 'some files failed check, see bad_bams.fofn'
+```
