@@ -20,7 +20,7 @@
 ### Conda 安装依赖环境
 
 ```
-conda env create snp_calling --file environment.yaml
+conda create -n snpcalling -f environment.yaml
 ```
 
 ### 激活虚拟环境
