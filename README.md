@@ -2,8 +2,9 @@
 
 <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fshangshanzhizhe%2FWork_flow_of_population_genetics&count_bg=%2379C83D&title_bg=%23555555&icon=microgenetics.svg&icon_color=%23E7E7E7&title=%E8%AE%BF%E9%97%AE%E9%87%8F&edge_flat=false"/></a>
 
-记录相关流程和脚本方便自己和大家参考\
-欢迎大家Pull Request
+记录相关流程和脚本方便自己和大家参考，佛系更新，独木难支，欢迎志同道合的小伙伴加入！
+
+这个repo已经开通[Discussion](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/discussions)版块，希望可以成为大家学习交流的平台
 
 ### 贡献者们
 
@@ -14,8 +15,6 @@
 >[Mou Yin](https://github.com/yinm2018): 看看我写的基因组学研究流程！\
 [Hermiolee1](https://github.com/Hermiolee1): 我占坑的，怎么了嘛
 
-文中使用的参考软件列表见[软件列表 Reference Software List](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/software_list.md)
-
 ### 下一步
 
 - [ ] 测试和更新bwa-mem2/minimap2比对流程
@@ -24,6 +23,7 @@
 ### 下亿步
 
 - [ ] 下一步：将以下一些流程写为snakemake workflow
+    - [x] SNP calling Snakemake 流程已经完成
 - [ ] 下一步：将以下一些流程装进conda
 
 ### 目录

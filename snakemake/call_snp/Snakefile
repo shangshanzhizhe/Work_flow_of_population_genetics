@@ -5,14 +5,10 @@ rule all:
     input:
         expand("raw_stat/{sample}.stat.txt", sample=config["samples"]),
         expand("clean_stat/{sample}.stat.txt", sample=config["samples"]),
-        "reference/ref.bwa_index.done",
         config['reference'] + ".fai",
-        expand("duplicate_removed/{sample}.rmdup.bam", sample=config["samples"]),
-        expand("duplicate_removed/{sample}.rmdup.bam.bai", sample=config["samples"]),
         "result_vcfs/combined.vcf.gz",
         "result_vcfs/combined.indel.filtered.vcf.gz",
         "result_vcfs/combined.snp.filtered.vcf.gz"
-
 
 rule stat_fastq:
     input: 
@@ -23,7 +19,7 @@ rule stat_fastq:
     shell:
         "fastq_info {input.fw} {input.re} 2> {output}"
 
-rule clean_reads: ## 修改线程数,log等
+rule clean_reads:
     input:
         fq1="raw_fastq/{sample}.1.fq.gz",
         fq2="raw_fastq/{sample}.2.fq.gz"
@@ -112,7 +108,7 @@ rule picard_index:
     output:
         re.sub(r'.fasta', '.dict', config['reference'])
     params:
-        picard_path=config['picard_path']
+        picard_path=config['params']['picard']['picard_path']
     log:
         "logs/index/picard_index.log"
     shell:
@@ -124,6 +120,7 @@ rule bam_rmdup:
         dict=re.sub(r'.fasta', '.dict', config['reference'])
     output:
         bam=protected("duplicate_removed/{sample}.rmdup.bam"),
+        "duplicate_removed/{sample}.rmdup.bam.bai",
         metrix="duplicate_removed/{sample}.dup.txt"
     params:
         picard_path=config['picard_path']
@@ -140,7 +137,7 @@ rule index_rmdup:
     shell:
         "samtools index {input}"
 
-rule haplo: ## 线程数？
+rule haplo:
     input:
         bam="duplicate_removed/{sample}.rmdup.bam",
         bai="duplicate_removed/{sample}.rmdup.bam.bai",
@@ -148,10 +145,10 @@ rule haplo: ## 线程数？
         idx=config['reference'] + ".fai"
     output:
         "gvcf/{sample}.g.vcf.gz"
-    resources:
-        mem_mb=1024
+    threads:
+        config['params']['haplotype_caller']['haplotype_threads']
     shell:
-        "gatk HaplotypeCaller -R {input.ref} --emit-ref-confidence GVCF -I {input.bam} -O {output}"
+        "gatk HaplotypeCaller -R {input.ref} --emit-ref-confidence GVCF -I {input.bam} -O {output} -c {threads}"
 
 rule combine_gvcf:
     input:
@@ -159,8 +156,10 @@ rule combine_gvcf:
         fa=config['reference']
     output:
         "combined.g.vcf.gz"
+    params:
+        config['params']['combine_vcf']['java_options']
     shell:
-        "gatk CombineGVCFs -R {input.fa} $(echo {input.gvcf}) | sed 's/data/ --variant data/g') -O {output} 2> {log}"
+        "gatk CombineGVCFs {params} -R {input.fa} $(echo {input.gvcf}) | sed 's/data/ --variant data/g') -O {output} 2> {log}"
         
 
 rule joint_calling:
@@ -171,8 +170,10 @@ rule joint_calling:
         vcf=protected("result_vcfs/combined.vcf.gz")
     log:
         "logs/gatk/genotypegvcfs.log"
+    params:
+        config['params']['genotype_gvcfs']['java_options']
     shell:
-        "gatk GenotypeGVCFs -R {input.ref} -V {input.gvcf} -O {output.vcf} 2> {log}"
+        "gatk GenotypeGVCFs {params} -R {input.ref} -V {input.gvcf} -O {output.vcf} 2> {log}"
 
 rule snp_select:
     input:

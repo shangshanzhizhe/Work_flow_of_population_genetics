@@ -4,16 +4,8 @@
 
 ## 依赖软件和环境
 
-加粗为固定版本，其余版本为conda安装时使用的版本，经过测试没有问题
-
-- **Python** == 3.6
-- Snakemake >= 5.24.1
-- fastq == 0.20.1
-- fastq utils == 0.25.1
-- bwa == 0.7.17
-- samtools == 1.13
-- gatk == 4.1.4.1
-- snakemake-wrapper-utils==0.1.3
+- Python3
+- picard
 
 其他依赖环境在environment.yaml中
 
@@ -29,40 +21,49 @@ conda env create -f environment.yaml
 conda activate snpcalling
 ```
 
-### 建立如下所示的文件结构
+## 建立如下所示的文件结构
 
+示例如下：
 ```
 [ 4.0K]  call_snp
-    ├── [  236]  config.yaml
-    ├── [  27K]  dag.svg
-    ├── [ 7.4K]  enviroment.yaml
-    ├── [ 4.0K]  raw_fastq
-    │   ├── [ 1.2M]  E_rothschildi.1.fq.gz
-    │   ├── [ 1.1M]  E_rothschildi.2.fq.gz
-    │   ├── [ 1.1M]  E_rothschildi5.1.fq.gz
-    │   └── [ 1.1M]  E_rothschildi5.2.fq.gz
-    ├── [  423]  README.md
-    ├── [ 4.0K]  reference
-    │   └── [ 1.3G]  ref.fasta
-    └── [ 7.0K]  Snakefile
+    ├── config.yaml
+    ├── enviroment.yaml
+    ├── raw_fastq
+    │   ├── prefix1.1.fq.gz
+    │   ├── prefix1.2.fq.gz
+    │   ├── prefix2.1.fq.gz
+    │   └── prefix2.2.fq.gz
+    ├── reference
+    │   └── ref.fasta
+    └── Snakefile
 ```
 
 ### 修改config.yaml文件内容
 
-```
-samples:
-    sample_name1: "dir/prefix1"
-    sample_name2: "dir/prefix2"
+- 保持文件夹名称和文件后缀和默认一致
+- 指定picard文件的位置
+- 根据参考基因组大小，测序深度等经验来修改`--java-options`
 
-reference: "reference/ref.fasta"
+## 运行
 
-bwa_threads: 30
-fastp_threads: 8
-
-picard_path: "/somepath/picard.2.25.0.jar"
-```
-### 运行
+#### 本地运行
 
 ```
-snakemake --cores 10
+snakemake --cores 30
 ```
+
+#### 使用slurm系统
+
+1. 修改`cluster.yaml`文件内容
+2. 修改`runSnakes.slurm`文件内容
+
+```
+sbatch runSnakes.slurm
+```
+
+### 注意
+
+保持config文件和slurm提交中的cpu数、内存大小一致，防止任务中断
+
+## LICENSE
+MIT License

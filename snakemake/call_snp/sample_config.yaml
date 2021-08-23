@@ -1,5 +1,0 @@
-samples:
-    Sample_A: fastq_files/SRR4356728
-    Sample_B: fastq_files/SRR6257171
-
-prior_mutation_rate: 0.001

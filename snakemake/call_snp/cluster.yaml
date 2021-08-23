@@ -1,0 +1,85 @@
+{
+    "__default__" :
+    {
+        "account" : "user186",
+        "c" : 1,
+        "n" : 1,
+        "partition" : "pNormal",
+        "mempercpu" : "2G"
+    },
+    "stat_fastq" :
+    { default },
+    "clean_reads" :
+    {
+        "c" : 8, # note, change to whatever current threading in Snakefile is
+        "mempercpu" : "8G"
+    },
+    "stat_clean":
+    { default },
+    "bwa_index" :
+    {
+        "c" : 2
+        "mempercpu": "4G"
+    },
+    "faidx_index":
+    {
+        "c": 1,
+        "mempercpu" : "1G"
+    },
+    "bwa_mem" :
+    {
+        "c": 15, # note, change to whatever current threading in Snakefile is
+        "mempercpu" : "2G"
+    },
+    "samtools_sort" :
+    { default },
+    "samtools_index" :
+    { default },
+    "picard_index" :
+    {
+        "c" : 1, # note, change as needed
+        "mempercpu" : "4G"
+    },
+    "bam_rmdup" :
+    {
+        "mempercpu" : "5G",
+        "c" : 2
+    },
+    "index_rmdup":
+    { default },
+    "haplo":
+    {
+        "mempercpu" : "2G",
+        "c" : 5
+    },
+    "combine_gvcf" :
+    {
+        "mempercpu" : "2G",
+        "c" : 2
+    },
+    "joint_calling" :
+    {
+        "mempercpu" : "2G",
+        "c" : 2
+    },
+    "snp_select" :
+    {
+        "mempercpu" : "2G",
+        "c" : 2
+    },
+    "indel_select" : # todo adjust
+    {
+        "mempercpu" : "2G",
+        "c" : 2
+    },
+    "snp_filter" : # todo adjust
+    {
+        "mempercpu" : "2G",
+        "c" : 2
+    },
+    "indel_filter" : # crashes when provided 2G/CPU. Adjust cluster allocation and Java heap space
+    {
+        "mempercpu" : "2G",
+        "c" : 2
+    }
+}
