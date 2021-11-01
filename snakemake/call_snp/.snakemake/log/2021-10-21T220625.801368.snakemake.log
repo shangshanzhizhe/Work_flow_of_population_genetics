@@ -1,0 +1,79 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 15
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+combine_gvcf         1              1              1
+indel_filter         1              1              1
+indel_select         1              1              1
+joint_calling        1              1              1
+snp_filter           1              1              1
+snp_select           1              1              1
+total                7              1              1
+
+Select jobs to execute...
+
+[Thu Oct 21 22:06:26 2021]
+rule combine_gvcf:
+    input: gvcf/SRR15006267.g.vcf.gz, gvcf/SRR15006269.g.vcf.gz, reference/ref.fasta
+    output: combined.g.vcf.gz
+    jobid: 9
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 22:07:44 2021]
+Finished job 9.
+1 of 7 steps (14%) done
+Select jobs to execute...
+
+[Thu Oct 21 22:07:44 2021]
+rule joint_calling:
+    input: reference/ref.fasta, combined.g.vcf.gz
+    output: result_vcfs/combined.vcf.gz
+    log: logs/gatk/genotypegvcfs.log
+    jobid: 8
+    resources: tmpdir=/tmp
+
+Write-protecting output file result_vcfs/combined.vcf.gz.
+[Thu Oct 21 22:08:37 2021]
+Finished job 8.
+2 of 7 steps (29%) done
+Select jobs to execute...
+
+[Thu Oct 21 22:08:37 2021]
+rule indel_select:
+    input: result_vcfs/combined.vcf.gz, reference/ref.fasta
+    output: result_vcfs/combined.indel.vcf.gz
+    log: logs/gatk/select/indel.log
+    jobid: 23
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 22:08:37 2021]
+rule snp_select:
+    input: result_vcfs/combined.vcf.gz, reference/ref.fasta
+    output: result_vcfs/combined.snp.vcf.gz
+    log: logs/gatk/select/snp.log
+    jobid: 25
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 22:08:42 2021]
+Finished job 25.
+3 of 7 steps (43%) done
+Select jobs to execute...
+
+[Thu Oct 21 22:08:42 2021]
+rule snp_filter:
+    input: result_vcfs/combined.snp.vcf.gz, reference/ref.fasta
+    output: result_vcfs/combined.snp.filtered.vcf.gz
+    log: logs/gatk/filter/snp.log
+    jobid: 24
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 22:08:48 2021]
+Finished job 24.
+4 of 7 steps (57%) done
+Terminating processes on user request, this might take some time.
+Complete log: /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/.snakemake/log/2021-10-21T220625.801368.snakemake.log

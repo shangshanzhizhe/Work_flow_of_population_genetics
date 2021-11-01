@@ -1,0 +1,2 @@
+SyntaxError in line 125 of /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile:
+positional argument follows keyword argument

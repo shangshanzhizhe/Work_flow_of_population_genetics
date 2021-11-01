@@ -1,0 +1,7 @@
+rule samtools_index:
+    input:
+        "sorted_reads/{sample}.sort.bam"
+    output:
+        "sorted_reads/{sample}.sort.bam.bai"
+    shell:
+        "samtools index {input}"

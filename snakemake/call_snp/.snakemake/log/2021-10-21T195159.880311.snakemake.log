@@ -1,0 +1,3 @@
+KeyError in line 81 of /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile:
+'bwa_threads'
+  File "/data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile", line 81, in <module>

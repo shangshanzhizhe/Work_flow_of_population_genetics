@@ -1,0 +1,12 @@
+rule combine_gvcf:
+    input:
+        gvcf=expand("gvcf/{sample}.g.vcf.gz", sample=config['samples']),
+        fa=config['reference']
+    output:
+        "combined.g.vcf.gz"
+    params:
+        config['params']['combine_vcf']['java_options']
+    shell:
+        """
+        gatk CombineGVCFs {params} -R {input.fa} $(echo {input.gvcf} | sed 's/gvcf/ --variant gvcf/g') -O {output}
+        """

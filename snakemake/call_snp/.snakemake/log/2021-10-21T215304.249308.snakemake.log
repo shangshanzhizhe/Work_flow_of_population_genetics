@@ -1,0 +1,38 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 15
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+indel_filter         1              1              1
+indel_select         1              1              1
+joint_calling        1              1              1
+snp_filter           1              1              1
+snp_select           1              1              1
+total                6              1              1
+
+Select jobs to execute...
+
+[Thu Oct 21 21:53:05 2021]
+rule joint_calling:
+    input: reference/ref.fasta, combined.g.vcf.gz
+    output: result_vcfs/combined.vcf.gz
+    log: logs/gatk/genotypegvcfs.log
+    jobid: 8
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 21:53:11 2021]
+Error in rule joint_calling:
+    jobid: 8
+    output: result_vcfs/combined.vcf.gz
+    log: logs/gatk/genotypegvcfs.log (check log file(s) for error message)
+    shell:
+        gatk GenotypeGVCFs --java-options "-Xms512m -Xmx4g" -R reference/ref.fasta -V combined.g.vcf.gz -O result_vcfs/combined.vcf.gz 2> logs/gatk/genotypegvcfs.log
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/.snakemake/log/2021-10-21T215304.249308.snakemake.log

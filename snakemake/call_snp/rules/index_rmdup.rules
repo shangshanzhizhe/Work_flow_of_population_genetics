@@ -1,0 +1,7 @@
+rule index_rmdup:
+    input:
+        "duplicate_removed/{sample}.rmdup.bam"
+    output:
+        "duplicate_removed/{sample}.rmdup.bam.bai"
+    shell:
+        "samtools index {input}"

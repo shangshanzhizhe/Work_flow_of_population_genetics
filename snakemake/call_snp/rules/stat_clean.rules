@@ -1,0 +1,8 @@
+rule stat_clean:
+    input: 
+        fw="clean_reads/{sample}.1.clean.fq.gz",
+        re="clean_reads/{sample}.2.clean.fq.gz"
+    output:
+        "clean_stat/{sample}.stat.txt"
+    shell:
+        "fastq_info {input.fw} {input.re} 2> {output}"

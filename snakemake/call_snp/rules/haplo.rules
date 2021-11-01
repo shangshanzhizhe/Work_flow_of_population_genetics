@@ -1,0 +1,10 @@
+rule haplo:
+    input:
+        bam="duplicate_removed/{sample}.rmdup.bam",
+        bai="duplicate_removed/{sample}.rmdup.bam.bai",
+        ref=config['reference'],
+        idx=config['reference'] + ".fai"
+    output:
+        "gvcf/{sample}.g.vcf.gz"
+    shell:
+        "gatk HaplotypeCaller -R {input.ref} --emit-ref-confidence GVCF -I {input.bam} -O {output}"

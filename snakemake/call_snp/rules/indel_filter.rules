@@ -1,0 +1,13 @@
+rule indel_filter:
+    input:
+        vcf="result_vcfs/combined.indel.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.indel.filtered.vcf.gz"
+    log:
+        "logs/gatk/filter/indel.log"
+    params:
+        filters="myfilter",
+        expression="QD < 2.0 || FS > 200.0 || SOR > 10.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"
+    shell:
+        "gatk VariantFiltration -V {input.vcf} --filter-expression \"{params.expression}\" --filter-name \"{params.filters}\" -O {output.vcf} 2> {log}"

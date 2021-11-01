@@ -1,0 +1,11 @@
+rule picard_index:
+    input:
+        config['reference']
+    output:
+        re.sub(r'.fasta', '.dict', config['reference'])
+    params:
+        picard_path=config['params']['picard']['picard_path']
+    log:
+        "logs/index/picard_index.log"
+    shell:
+        "java -jar {params.picard_path} CreateSequenceDictionary REFERENCE={input} OUTPUT={output} 2> {log}"

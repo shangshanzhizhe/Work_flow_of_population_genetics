@@ -1,0 +1,9 @@
+rule bwa_index:
+    input:
+        config['reference']
+    output:
+        done=touch("reference/ref.bwa_index.done")
+    log:
+        "logs/index/bwa_index.log"
+    shell:
+        "bwa index {input} 2> {log}"

@@ -1,0 +1,25 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 15
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job             count    min threads    max threads
+------------  -------  -------------  -------------
+all                 1              1              1
+indel_filter        1              1              1
+indel_select        1              1              1
+total               3              1              1
+
+Select jobs to execute...
+
+[Thu Oct 21 22:19:46 2021]
+rule indel_select:
+    input: result_vcfs/combined.vcf.gz, reference/ref.fasta
+    output: result_vcfs/combined.indel.vcf.gz
+    log: logs/gatk/select/indel.log
+    jobid: 23
+    resources: tmpdir=/tmp
+
+Terminating processes on user request, this might take some time.
+Complete log: /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/.snakemake/log/2021-10-21T221945.622132.snakemake.log

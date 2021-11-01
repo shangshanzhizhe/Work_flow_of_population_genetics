@@ -1,0 +1,8 @@
+rule stat_fastq:
+    input: 
+        fw="raw_fastq/{sample}.1.fq.gz",
+        re="raw_fastq/{sample}.2.fq.gz"
+    output:
+        "raw_stat/{sample}.stat.txt"
+    shell:
+        "fastq_info {input.fw} {input.re} 2> {output}"

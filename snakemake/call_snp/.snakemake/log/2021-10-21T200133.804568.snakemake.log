@@ -1,0 +1,39 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cluster nodes: 5
+Conda environments: ignored
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+bam_rmdup            2              1              1
+bwa_index            1              1              1
+bwa_mem              2             30             30
+clean_reads          2              8              8
+combine_gvcf         1              1              1
+faidx_index          1              1              1
+haplo                2             10             10
+indel_filter         1              1              1
+indel_select         1              1              1
+index_rmdup          2              1              1
+joint_calling        1              1              1
+picard_index         1              1              1
+samtools_sort        2              1              1
+snp_filter           1              1              1
+snp_select           1              1              1
+stat_clean           2              1              1
+stat_fastq           2              1              1
+total               26              1             30
+
+Select jobs to execute...
+
+[Thu Oct 21 20:01:35 2021]
+rule stat_fastq:
+    input: raw_fastq/SRR15006267.1.fq.gz, raw_fastq/SRR15006267.2.fq.gz
+    output: raw_stat/SRR15006267.stat.txt
+    jobid: 1
+    wildcards: sample=SRR15006267
+    resources: tmpdir=/tmp
+
+WorkflowError in line 13 of /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile:
+'Wildcards' object has no attribute 'time'

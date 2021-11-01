@@ -1,0 +1,15 @@
+rule clean_reads:
+    input:
+        fq1="raw_fastq/{sample}.1.fq.gz",
+        fq2="raw_fastq/{sample}.2.fq.gz"
+    output:
+        fq1="clean_reads/{sample}.1.clean.fq.gz",
+        fq2="clean_reads/{sample}.2.clean.fq.gz",
+        json="clean_reads/{sample}.json",
+        html="clean_reads/{sample}.html"
+    threads:
+        config['params']['fastp']['fastp_threads']
+    log:
+        "logs/fastp/{sample}.clean.log"
+    shell:
+        "fastp -w {threads} -i {input.fq1} -I {input.fq2} -o {output.fq1} -O {output.fq2} -j {output.json} -h {output.html} 2> {log}"

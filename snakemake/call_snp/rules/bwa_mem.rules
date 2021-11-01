@@ -1,0 +1,16 @@
+rule bwa_mem:
+    input:
+        check="reference/ref.bwa_index.done",
+        ref=config['reference'],
+        fq1="clean_reads/{sample}.1.clean.fq.gz",
+        fq2="clean_reads/{sample}.2.clean.fq.gz"
+    output:
+        temp("mapped_reads/{sample}.bam")
+    params:
+        rg=r"@RG\tID:{sample}\tPL:illumina\tPU:illumina\tLB:{sample}\tSM:{sample}"
+    log:
+        "logs/bwa_mem/{sample}.log"
+    threads: config['params']['bwa']['bwa_threads']
+    shell:
+        "(bwa mem -R '{params.rg}' -t {threads} {input.ref} {input.fq1} {input.fq2} | "
+        "samtools view -Sb - > {output}) 2> {log}"

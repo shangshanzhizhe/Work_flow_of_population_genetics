@@ -1,0 +1,12 @@
+rule joint_calling:
+    input:
+        ref=config['reference'],
+        gvcf="combined.g.vcf.gz"
+    output:
+        vcf=protected("result_vcfs/combined.vcf.gz")
+    log:
+        "logs/gatk/genotypegvcfs.log"
+    params:
+        config['params']['genotype_gvcfs']['java_options']
+    shell:
+        "gatk GenotypeGVCFs {params} -R {input.ref} -V {input.gvcf} -O {output.vcf} 2> {log}"

@@ -1,0 +1,12 @@
+rule indel_select:
+    input:
+        vcf="result_vcfs/combined.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.indel.vcf.gz"
+    log:
+        "logs/gatk/select/indel.log"
+    params:
+        extra="--select-type-to-include INDEL"
+    shell:
+        "gatk SelectVariants {params.extra} -V {input.vcf} -O {output.vcf} 2> {log}"

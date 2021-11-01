@@ -1,8 +1,10 @@
 reference: "reference/ref.fasta"
 
 samples:
-    E_rothschildi: "raw_fastq/E_rothschildi" # "raw_fastq/E_rothschildi.1.fq.gz"
-    E_rothschildi5: "raw_fastq/E_rothschildi5" # "raw_fastq/E_rothschildi.2.fq.gz"
+    SRR15006267: "raw_fastq/SRR15006267" # "raw_fastq/E_rothschildi.1.fq.gz"
+    SRR15006269: "raw_fastq/SRR15006269" # "raw_fastq/E_rothschildi.2.fq.gz"
+
+window: 10000000
 
 params:
     bwa:
@@ -12,7 +14,6 @@ params:
         fastp_threads: 8
 
     hyplotype_caller:
-        haplotype_threads: 10
         java_options: "--java-options \"-Xms512m -Xmx4g\""
     
     genotype_gvcfs:

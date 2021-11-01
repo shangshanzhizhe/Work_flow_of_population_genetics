@@ -18,7 +18,7 @@
     { default },
     "bwa_index" :
     {
-        "c" : 2
+        "c" : 2,
         "mempercpu": "4G"
     },
     "faidx_index":

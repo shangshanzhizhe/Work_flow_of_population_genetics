@@ -1,0 +1,13 @@
+rule bam_rmdup:
+    input:
+        bam="sorted_reads/{sample}.sort.bam",
+        dict=re.sub(r'.fasta', '.dict', config['reference'])
+    output:
+        bam=protected("duplicate_removed/{sample}.rmdup.bam"),
+        matrix="duplicate_removed/{sample}.dup.txt"
+    params:
+        picard_path=config['params']['picard']['picard_path']
+    log:
+        "logs/rmdup/{sample}.log"
+    shell:
+        "java -Xmx10g -jar {params.picard_path} MarkDuplicates INPUT={input.bam} OUTPUT={output.bam} METRICS_FILE={output.matrix} REMOVE_DUPLICATES=true"

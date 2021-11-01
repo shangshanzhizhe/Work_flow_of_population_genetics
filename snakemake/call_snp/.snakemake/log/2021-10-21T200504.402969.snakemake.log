@@ -1,0 +1,256 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 15
+Rules claiming more threads will be scaled down.
+Conda environments: ignored
+Job stats:
+job              count    min threads    max threads
+-------------  -------  -------------  -------------
+all                  1              1              1
+bam_rmdup            2              1              1
+bwa_index            1              1              1
+bwa_mem              2             15             15
+clean_reads          2              8              8
+combine_gvcf         1              1              1
+faidx_index          1              1              1
+haplo                2             10             10
+indel_filter         1              1              1
+indel_select         1              1              1
+index_rmdup          2              1              1
+joint_calling        1              1              1
+picard_index         1              1              1
+samtools_sort        2              1              1
+snp_filter           1              1              1
+snp_select           1              1              1
+stat_clean           2              1              1
+stat_fastq           2              1              1
+total               26              1             15
+
+Select jobs to execute...
+
+[Thu Oct 21 20:05:05 2021]
+rule stat_fastq:
+    input: raw_fastq/SRR15006267.1.fq.gz, raw_fastq/SRR15006267.2.fq.gz
+    output: raw_stat/SRR15006267.stat.txt
+    jobid: 1
+    wildcards: sample=SRR15006267
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:05:05 2021]
+rule clean_reads:
+    input: raw_fastq/SRR15006269.1.fq.gz, raw_fastq/SRR15006269.2.fq.gz
+    output: clean_reads/SRR15006269.1.clean.fq.gz, clean_reads/SRR15006269.2.clean.fq.gz, clean_reads/SRR15006269.json, clean_reads/SRR15006269.html
+    log: logs/fastp/SRR15006269.clean.log
+    jobid: 6
+    wildcards: sample=SRR15006269
+    threads: 8
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:05:05 2021]
+rule picard_index:
+    input: reference/ref.fasta
+    output: reference/ref.dict
+    log: logs/index/picard_index.log
+    jobid: 15
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:05:05 2021]
+rule faidx_index:
+    input: reference/ref.fasta
+    output: reference/ref.fasta.fai
+    jobid: 7
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:05:05 2021]
+rule bwa_index:
+    input: reference/ref.fasta
+    output: reference/ref.bwa_index.done
+    log: logs/index/bwa_index.log
+    jobid: 14
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:05:05 2021]
+rule stat_fastq:
+    input: raw_fastq/SRR15006269.1.fq.gz, raw_fastq/SRR15006269.2.fq.gz
+    output: raw_stat/SRR15006269.stat.txt
+    jobid: 2
+    wildcards: sample=SRR15006269
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:05:06 2021]
+Finished job 7.
+1 of 26 steps (4%) done
+Select jobs to execute...
+[Thu Oct 21 20:05:11 2021]
+Finished job 15.
+2 of 26 steps (8%) done
+Select jobs to execute...
+Touching output file reference/ref.bwa_index.done.
+[Thu Oct 21 20:05:22 2021]
+Finished job 14.
+3 of 26 steps (12%) done
+Select jobs to execute...
+[Thu Oct 21 20:05:29 2021]
+Finished job 2.
+4 of 26 steps (15%) done
+Select jobs to execute...
+[Thu Oct 21 20:05:32 2021]
+Finished job 1.
+5 of 26 steps (19%) done
+Select jobs to execute...
+[Thu Oct 21 20:05:34 2021]
+Finished job 6.
+6 of 26 steps (23%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:05:34 2021]
+rule bwa_mem:
+    input: reference/ref.bwa_index.done, reference/ref.fasta, clean_reads/SRR15006269.1.clean.fq.gz, clean_reads/SRR15006269.2.clean.fq.gz
+    output: mapped_reads/SRR15006269.bam
+    log: logs/bwa_mem/SRR15006269.log
+    jobid: 20
+    wildcards: sample=SRR15006269
+    threads: 15
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:06:57 2021]
+Finished job 20.
+7 of 26 steps (27%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:06:57 2021]
+rule clean_reads:
+    input: raw_fastq/SRR15006267.1.fq.gz, raw_fastq/SRR15006267.2.fq.gz
+    output: clean_reads/SRR15006267.1.clean.fq.gz, clean_reads/SRR15006267.2.clean.fq.gz, clean_reads/SRR15006267.json, clean_reads/SRR15006267.html
+    log: logs/fastp/SRR15006267.clean.log
+    jobid: 4
+    wildcards: sample=SRR15006267
+    threads: 8
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:06:57 2021]
+rule samtools_sort:
+    input: mapped_reads/SRR15006269.bam
+    output: sorted_reads/SRR15006269.sort.bam
+    jobid: 19
+    wildcards: sample=SRR15006269
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:06:57 2021]
+rule stat_clean:
+    input: clean_reads/SRR15006269.1.clean.fq.gz, clean_reads/SRR15006269.2.clean.fq.gz
+    output: clean_stat/SRR15006269.stat.txt
+    jobid: 5
+    wildcards: sample=SRR15006269
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:07:18 2021]
+Finished job 5.
+8 of 26 steps (31%) done
+[Thu Oct 21 20:07:28 2021]
+Finished job 4.
+9 of 26 steps (35%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:07:28 2021]
+rule stat_clean:
+    input: clean_reads/SRR15006267.1.clean.fq.gz, clean_reads/SRR15006267.2.clean.fq.gz
+    output: clean_stat/SRR15006267.stat.txt
+    jobid: 3
+    wildcards: sample=SRR15006267
+    resources: tmpdir=/tmp
+
+Removing temporary output file mapped_reads/SRR15006269.bam.
+[Thu Oct 21 20:07:49 2021]
+Finished job 19.
+10 of 26 steps (38%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:07:49 2021]
+rule bam_rmdup:
+    input: sorted_reads/SRR15006269.sort.bam, reference/ref.dict
+    output: duplicate_removed/SRR15006269.rmdup.bam, duplicate_removed/SRR15006269.dup.txt
+    log: logs/rmdup/SRR15006269.log
+    jobid: 18
+    wildcards: sample=SRR15006269
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:07:51 2021]
+Finished job 3.
+11 of 26 steps (42%) done
+Select jobs to execute...
+Write-protecting output file duplicate_removed/SRR15006269.rmdup.bam.
+Removing temporary output file sorted_reads/SRR15006269.sort.bam.
+[Thu Oct 21 20:10:05 2021]
+Finished job 18.
+12 of 26 steps (46%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:10:05 2021]
+rule bwa_mem:
+    input: reference/ref.bwa_index.done, reference/ref.fasta, clean_reads/SRR15006267.1.clean.fq.gz, clean_reads/SRR15006267.2.clean.fq.gz
+    output: mapped_reads/SRR15006267.bam
+    log: logs/bwa_mem/SRR15006267.log
+    jobid: 13
+    wildcards: sample=SRR15006267
+    threads: 15
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:11:40 2021]
+Finished job 13.
+13 of 26 steps (50%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:11:40 2021]
+rule index_rmdup:
+    input: duplicate_removed/SRR15006269.rmdup.bam
+    output: duplicate_removed/SRR15006269.rmdup.bam.bai
+    jobid: 21
+    wildcards: sample=SRR15006269
+    resources: tmpdir=/tmp
+
+
+[Thu Oct 21 20:11:40 2021]
+rule samtools_sort:
+    input: mapped_reads/SRR15006267.bam
+    output: sorted_reads/SRR15006267.sort.bam
+    jobid: 12
+    wildcards: sample=SRR15006267
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:11:43 2021]
+Finished job 21.
+14 of 26 steps (54%) done
+Select jobs to execute...
+
+[Thu Oct 21 20:11:43 2021]
+rule haplo:
+    input: duplicate_removed/SRR15006269.rmdup.bam, duplicate_removed/SRR15006269.rmdup.bam.bai, reference/ref.fasta, reference/ref.fasta.fai
+    output: gvcf/SRR15006269.g.vcf.gz
+    jobid: 17
+    wildcards: sample=SRR15006269
+    threads: 10
+    resources: tmpdir=/tmp
+
+[Thu Oct 21 20:11:52 2021]
+Error in rule haplo:
+    jobid: 17
+    output: gvcf/SRR15006269.g.vcf.gz
+    shell:
+        gatk HaplotypeCaller -R reference/ref.fasta --emit-ref-confidence GVCF -I duplicate_removed/SRR15006269.rmdup.bam -O gvcf/SRR15006269.g.vcf.gz -c 10
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Removing temporary output file mapped_reads/SRR15006267.bam.
+[Thu Oct 21 20:12:34 2021]
+Finished job 12.
+15 of 26 steps (58%) done
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/.snakemake/log/2021-10-21T200504.402969.snakemake.log

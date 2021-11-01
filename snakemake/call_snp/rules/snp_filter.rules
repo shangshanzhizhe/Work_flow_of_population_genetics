@@ -1,0 +1,13 @@
+rule snp_filter:
+    input:
+        vcf="result_vcfs/combined.snp.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.snp.filtered.vcf.gz"
+    log:
+        "logs/gatk/filter/snp.log"
+    params:
+        filters="myfilter",
+        expression="QD < 2.0 || MQ < 40.0 || FS > 60.0 || SOR > 3.0 || MQRankSum < -12.5 || ReadPosRankSum < -8.0"
+    shell:
+        "gatk VariantFiltration -V {input.vcf} --filter-expression \"{params.expression}\" --filter-name \"{params.filters}\" -O {output.vcf} 2> {log}"

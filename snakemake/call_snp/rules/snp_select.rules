@@ -1,0 +1,12 @@
+rule snp_select:
+    input:
+        vcf="result_vcfs/combined.vcf.gz",
+        ref=config['reference']
+    output:
+        vcf="result_vcfs/combined.snp.vcf.gz"
+    log:
+        "logs/gatk/select/snp.log"
+    params:
+        extra="--select-type-to-include SNP"
+    shell:
+        "gatk SelectVariants {params.extra} -V {input.vcf} -O {output.vcf} 2> {log}"

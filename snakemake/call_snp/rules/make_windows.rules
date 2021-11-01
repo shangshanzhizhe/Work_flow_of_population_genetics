@@ -1,0 +1,17 @@
+rule make_length:
+    input:
+        config['reference'] + ".fai"
+    output:
+        config['reference'] + ".length"
+    shell:
+        "cut -f 1,2 {input} > {output}"
+
+rule make_window:
+    input:
+        config['reference'] + ".length"
+    output:
+        config['reference'] + ".window.bed"
+    param:
+        contig['window']
+    shell:
+        "bedtools makewindows -g {input} -w {param} > {output}"

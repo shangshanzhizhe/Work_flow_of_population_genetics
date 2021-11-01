@@ -1,0 +1,5 @@
+Building DAG of jobs...
+MissingInputException in line 13 of /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile:
+Missing input files for rule stat_fastq:
+raw_fastq/E_rothschildi.1.fq.gz
+raw_fastq/E_rothschildi.2.fq.gz

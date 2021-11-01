@@ -1,0 +1,8 @@
+rule samtools_sort:
+    input:
+        "mapped_reads/{sample}.bam"
+    output:
+        temp("sorted_reads/{sample}.sort.bam")
+    shell:
+        "samtools sort -T sorted_reads/{wildcards.sample} "
+        "-O bam {input} > {output}"
