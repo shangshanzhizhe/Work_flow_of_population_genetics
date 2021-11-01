@@ -13,7 +13,7 @@
 
 source activate snp_calling # 激活环境
 
-snakemake -j 5 --cluster-config cluster.yaml --cluster "sbatch -p {cluster.partition} -n {cluster.n} -t {cluster.time} -c {cluster.c} --mem-per-cpu {cluster.mempercpu}" -k
+snakemake -j 5 --cluster-config cluster.yaml --cluster "sbatch -p {cluster.partition} -n {cluster.n} -c {cluster.c} --mem-per-cpu {cluster.mempercpu}" -k
 
 # source deactivate gatk-potato
 

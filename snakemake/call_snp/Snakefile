@@ -9,9 +9,10 @@ rule all:
         "result_vcfs/combined.indel.filtered.vcf.gz",
         "result_vcfs/combined.snp.filtered.vcf.gz"
 
-include: "rules/bam_dup.rules"
+include: "rules/bam_rmdup.rules"
 include: "rules/bwa_index.rules"
-include: "rules/bam_mem.rules"
+include: "rules/bwa_mem.rules"
+include: "rules/index_rmdup.rules"
 include: "rules/clean_reads.rules"
 include: "rules/combine_gvcf.rules"
 include: "rules/faidx_index.rules"
@@ -26,4 +27,3 @@ include: "rules/snp_filter.rules"
 include: "rules/snp_select.rules"
 include: "rules/stat_clean.rules"
 include: "rules/stat_fastq.rules"
-include: "rules/make_windows.rules"

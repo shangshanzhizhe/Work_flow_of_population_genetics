@@ -4,6 +4,7 @@ rule bam_rmdup:
         dict=re.sub(r'.fasta', '.dict', config['reference'])
     output:
         bam=protected("duplicate_removed/{sample}.rmdup.bam"),
+	bai="duplicate_removed/{sample}.rmdup.bam.bai",
 	matrix="duplicate_removed/{sample}.dup.txt"
     params:
         picard_path=config['params']['picard']['picard_path']

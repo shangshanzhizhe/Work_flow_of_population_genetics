@@ -11,7 +11,7 @@
     { default },
     "clean_reads" :
     {
-        "c" : 8, # note, change to whatever current threading in Snakefile is
+        "c" : 4, # note, change to whatever current threading in Snakefile is
         "mempercpu" : "8G"
     },
     "stat_clean":

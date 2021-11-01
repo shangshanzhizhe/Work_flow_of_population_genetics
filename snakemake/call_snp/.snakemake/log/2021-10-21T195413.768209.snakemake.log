@@ -1,4 +1,0 @@
-Building DAG of jobs...
-MissingInputException in line 60 of /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile:
-Missing input files for rule faidx_index:
-reference/ref.fasta

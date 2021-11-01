@@ -1,3 +1,0 @@
-KeyError in line 148 of /data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile:
-'haplotype_threads'
-  File "/data/00/user/user186/Work_flow_of_population_genetics/snakemake/call_snp/Snakefile", line 148, in <module>
