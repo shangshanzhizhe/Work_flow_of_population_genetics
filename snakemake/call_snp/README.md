@@ -25,17 +25,42 @@ conda activate snpcalling
 
 示例如下：
 ```
-[ 4.0K]  call_snp
-    ├── config.yaml
-    ├── enviroment.yaml
-    ├── raw_fastq
-    │   ├── prefix1.1.fq.gz
-    │   ├── prefix1.2.fq.gz
-    │   ├── prefix2.1.fq.gz
-    │   └── prefix2.2.fq.gz
-    ├── reference
-    │   └── ref.fasta
-    └── Snakefile
+call_snp
+├── cluster.yaml
+├── config.yaml
+├── environment.yaml
+├── raw_fastq
+│   ├── SRR15006267.1.fq.gz
+│   ├── SRR15006267.2.fq.gz
+│   ├── SRR15006269.1.fq.gz
+│   └── SRR15006269.2.fq.gz
+├── README.md
+├── reference
+│   └── ref.fasta
+├── rules
+│   ├── bam_rmdup.rules
+│   ├── bam_rmdup.rules~
+│   ├── bwa_index.rules
+│   ├── bwa_mem.rules
+│   ├── clean_reads.rules
+│   ├── combine_gvcf.rules
+│   ├── faidx_index.rules
+│   ├── haplo.rules
+│   ├── indel_filter.rules
+│   ├── indel_select.rules
+│   ├── index_rmdup.rules
+│   ├── joint_calling.rules
+│   ├── picard_index.rules
+│   ├── samtools_index.rules
+│   ├── samtools_sort.rules
+│   ├── snp_filter.rules
+│   ├── snp_select.rules
+│   ├── stat_clean.rules
+│   └── stat_fastq.rules
+├── runSnakes.slurm
+└── Snakefile
+
+3 directories, 30 files
 ```
 
 ### 修改config.yaml文件内容
