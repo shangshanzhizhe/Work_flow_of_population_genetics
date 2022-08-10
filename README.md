@@ -12,8 +12,6 @@
   <img src="https://contrib.rocks/image?repo=shangshanzhizhe/Work_flow_of_population_genetics" />
 </a>
 
->[Mou Yin](https://github.com/yinm2018): 看看我写的基因组学研究流程！\
-[Hermiolee1](https://github.com/Hermiolee1): 我占坑的，怎么了嘛
 
 ### 下一步
 
