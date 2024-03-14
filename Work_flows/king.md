@@ -26,14 +26,16 @@ king -b Pop.bed --fam Pop.fam --bim Pop.bim -m Pop.map --related
 
 ### 在king.kin0文件中的Kinship列:
 
+> Thanks to [@yuanyuan309](https://github.com/yuanyuan309)!
+
 ```text
 (, 0.0442]  Unrelated
 
-(0.0442, 0.0884]    1st Degree Relationship
+(0.0442, 0.0884]    3rd Degree Relationship
 
 (0.0884, 0.1774]    2nd Degree Relationship
 
-(0.1774, 0.354]     3rd Degree Relationship
+(0.1774, 0.354]     1st Degree Relationship
 
 (0.354, )           Duplicated
 ```
