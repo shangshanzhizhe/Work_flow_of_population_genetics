@@ -20,7 +20,7 @@
 
 ### 下亿步
 
-- [ ] 下一步：将以下一些流程写为snakemake workflow
+- [ ] 下一步：将一些流程写为snakemake workflow
     - [x] SNP calling Snakemake 流程已经完成
 - [ ] 下一步：将以下一些流程装进conda
 
@@ -29,6 +29,7 @@
 
 - 2022.5.16 更新了使用二代测序数据检测结构变异的流程，基本思路是使用不同软件对每个个体的SV进行鉴定，然后将SV全部合并为一个文件，之后再根据所有样本的比对结果确定SV的基因型。感谢兰州大学博士研究生[安绚](https://www.researchgate.net/profile/Xuan-An-3)的整理。
 - 2024.1.19 感觉国外念个书人念癫了，后面更多更新一下相关流程里面踩的坑吧，随便写写。老外科研发达的原因我感觉是：国内：我算了个表示分化的Fst；国外：Fst什么原理？为什么在这个场合下用Fst？Fst比其他参数好在哪里？
+- 2024.5.30 开坑--泛基因组生成和变异鉴定；现有的泛基因组组装方法分为三类：1）通过 genome progressive alignment得到的图形泛基因组；2）De novo注释一组基因组的编码基因，然后通过比较得到基因集合；3）组装完一个参考基因组以后，通过不断比对WGS样本，将未比对上的序列作为参考序列进行下一轮比对。这里是我正在用的第一种方法，代表工具是cactus和vg
 
 
 ### 目录
@@ -48,6 +49,9 @@
     - 群体关系计算
         - [King计算个体间亲缘关系](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/king.md)
         - [PCA分析群体结构](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
+
+- [泛基因组组装和变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
+
 - 结构变异检测和群体遗传
 
     结构变异的检测，在模式生物中研究很多，很多结果也很漂亮，但是在非模式生物中尚未形和SNP一样的模式化流程，没有什么是“正确的”，我们只能尽量让它准确。流程也是我自己摸索的结果，仅供参考。
