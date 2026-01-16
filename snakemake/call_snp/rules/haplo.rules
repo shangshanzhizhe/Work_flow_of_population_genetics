@@ -6,5 +6,10 @@ rule haplo:
         idx=config['reference'] + ".fai"
     output:
         "gvcf/{sample}.g.vcf.gz"
+    params:
+        java_options=config["params"].get(
+            "haplotype_caller",
+            config["params"].get("hyplotype_caller", {})
+        ).get("java_options", "")
     shell:
-        "gatk HaplotypeCaller -R {input.ref} --emit-ref-confidence GVCF -I {input.bam} -O {output}"
+        "gatk HaplotypeCaller {params.java_options} -R {input.ref} --emit-ref-confidence GVCF -I {input.bam} -O {output}"

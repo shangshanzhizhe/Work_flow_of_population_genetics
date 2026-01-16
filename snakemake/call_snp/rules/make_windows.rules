@@ -11,7 +11,7 @@ rule make_window:
         config['reference'] + ".length"
     output:
         config['reference'] + ".window.bed"
-    param:
-        contig['window']
+    params:
+        window=config['window']
     shell:
-        "bedtools makewindows -g {input} -w {param} > {output}"
+        "bedtools makewindows -g {input} -w {params.window} > {output}"

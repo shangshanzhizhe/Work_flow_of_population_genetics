@@ -39,7 +39,6 @@ call_snp
 │   └── ref.fasta
 ├── rules
 │   ├── bam_rmdup.rules
-│   ├── bam_rmdup.rules~
 │   ├── bwa_index.rules
 │   ├── bwa_mem.rules
 │   ├── clean_reads.rules
@@ -50,6 +49,7 @@ call_snp
 │   ├── indel_select.rules
 │   ├── index_rmdup.rules
 │   ├── joint_calling.rules
+│   ├── make_windows.rules
 │   ├── picard_index.rules
 │   ├── samtools_index.rules
 │   ├── samtools_sort.rules
@@ -60,7 +60,6 @@ call_snp
 ├── runSnakes.slurm
 └── Snakefile
 
-3 directories, 30 files
 ```
 
 ### 修改config.yaml文件内容

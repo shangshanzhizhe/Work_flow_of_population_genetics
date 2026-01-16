@@ -10,4 +10,4 @@ rule bam_rmdup:
     log:
         "logs/rmdup/{sample}.log"
     shell:
-        "java -Xmx10g -jar {params.picard_path} MarkDuplicates INPUT={input.bam} OUTPUT={output.bam} METRICS_FILE={output.matrix} REMOVE_DUPLICATES=true"
+        "java -Xmx10g -jar {params.picard_path} MarkDuplicates INPUT={input.bam} OUTPUT={output.bam} METRICS_FILE={output.matrix} REMOVE_DUPLICATES=true 2> {log}"
