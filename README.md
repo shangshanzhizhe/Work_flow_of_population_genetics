@@ -34,36 +34,36 @@
 
 ### 目录
 - 生物信息工具——[我的关注](https://github.com/shangshanzhizhe?tab=stars)
-- [常用数据处理Tips](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/data_processing.md)
+- [常用数据处理Tips](docs/workflows/data_processing.md)
 - 重测序和群体遗传
-    - 变异鉴定和变异特征 ([snakemake自动化](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/tree/master/snakemake/call_snp))
-        - [序列过滤和比对](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Reads_clean_and_Mapping.md)
+    - 变异鉴定和变异特征 ([snakemake自动化](snakemake/call_snp/))
+        - [序列过滤和比对](docs/workflows/Reads_clean_and_Mapping.md)
             - **Nanopore**测序结果过滤:[Nanoflt](https://github.com/wdecoster/nanofilt)
             - **Nanopore**测序结果可视化:[NanoPlot](https://github.com/wdecoster/NanoPlot)
-        - [获得遗传变异信息以及质量控制](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/Call_variants_and_filtering.md)
-        - [比对特征统计](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/bam_file_property.md)
-    - [VCF文件注释](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/run_annovar_fromVCF.md) ([@Weihan Zhang](https://github.com/Weihankk))
+        - [获得遗传变异信息以及质量控制](docs/workflows/Call_variants_and_filtering.md)
+        - [比对特征统计](docs/workflows/bam_file_property.md)
+    - [VCF文件注释](docs/workflows/run_annovar_fromVCF.md) ([@Weihan Zhang](https://github.com/Weihankk))
     - 群体历史推测
-        - [MSMC算法](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/msmc_demo.md)
-        - [PSMC算法](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/psmc.md)
+        - [MSMC算法](docs/workflows/msmc_demo.md)
+        - [PSMC算法](docs/workflows/psmc.md)
     - 群体关系计算
-        - [King计算个体间亲缘关系](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/king.md)
-        - [PCA分析群体结构](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
+        - [King计算个体间亲缘关系](docs/workflows/king.md)
+        - [PCA分析群体结构](docs/workflows/pca_structure.md)
 
-- [泛基因组组装和变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/pca_structure.md)
+- [泛基因组组装和变异检测](docs/workflows/pan_genome.md)
 
 - 结构变异检测和群体遗传
 
     结构变异的检测，在模式生物中研究很多，很多结果也很漂亮，但是在非模式生物中尚未形和SNP一样的模式化流程，没有什么是“正确的”，我们只能尽量让它准确。流程也是我自己摸索的结果，仅供参考。
     
-    - [二代测序 结构变异检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/structure_variation.md)
+    - [二代测序 结构变异检测](docs/workflows/structure_variation.md)
     - 三代测序 结构变异检测
         - [我之前用过的](https://github.com/shangshanzhizhe/YakPopulationSV)
         - 2024.1 -- 现在我觉得还是得用[sniffles2](https://github.com/fritzsedlazeck/Sniffles)
             这玩意简单，这儿没流程，bam直接vcf，需要用二代在群体genotyping的看看Graphtyper。注意假阳性，假阳性还是蛮高（蛮高哦）；对超大inversion感兴趣的还是用SNP做local PCA，或者两个高质量基因组比对--我目前自己在做这个，等发出来了（？）写个中文版本，在这之前想要流程给我写个邮件？
     
         基于三代SV的结构变异鉴定可以参考[Jasmine](https://github.com/mkirsche/Jasmine)。我一直关注它从一个小工具成长为一个完整的流程，但是未能自己尝试使用，使用后可以更新流程。 （2024.1 -- 我好久不用了）
-- [Nanopore测序数据甲基化检测](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/methylation.md)
+- [Nanopore测序数据甲基化检测](docs/workflows/methylation.md)
 - 植物基因组组装和个性化分析 (以[花苜蓿](https://onlinelibrary.wiley.com/doi/abs/10.1111/1755-0998.13363)基因组学研究为例)
     - [相关流程和命令行](https://github.com/yinm2018/Medicago_ruthenica_genome)
     

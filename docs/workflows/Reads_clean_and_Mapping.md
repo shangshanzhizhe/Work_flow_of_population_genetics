@@ -9,7 +9,7 @@
 
 ### 脚本过滤 Use scripts
 
-[PairEndMultyReadsQualityFilter.pl](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Scripts/PairEndMultyReadsQualityFilter.pl)
+[PairEndMultyReadsQualityFilter.pl](../../scripts/PairEndMultyReadsQualityFilter.pl)
 
 ```sh
 perl 01.PairEndMultyReadsQualityFilter.pl $prefix $fastq1 $fastq2
@@ -51,7 +51,7 @@ samtools merge sample.sort.bam sample.L1.bam sample.L2.bam ...
 java -Xmx10g -jar picard.jar MarkDuplicates INPUT=01.bwa/sample.sort.bam OUTPUT=02.rmdup/sample.rmdup.bam METRICS_FILE=02.rmdup/sample.dup.txt REMOVE_DUPLICATES=true ; samtools index 02.rmdup/sample.rmdup.bam
 ```
 
-### 使用[GATK4](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Work_flows/gatk4_workflow.md)可以跳过以下INDEL重新比对
+### 使用[GATK4](gatk4_workflow.md)可以跳过以下INDEL重新比对
 
 ### 获得INDEL的区间: 使用[GATK](https://software.broadinstitute.org/gatk/) Get intervals of INDEL with GATK
 

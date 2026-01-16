@@ -50,7 +50,7 @@ java -jar GenomeAnalysisTK.jar -T VariantFiltration -R reference.fa -V Pop.INDEL
 
 > 脚本可以同时过滤multi-alternative的SNP位点 (对于二倍体)
 
-### [remove.hdfilter.pl](https://github.com/shangshanzhizhe/Work_flow_of_population_genetics/blob/master/Scripts/remove.hdfilter.pl)
+### [remove.hdfilter.pl](../../scripts/remove.hdfilter.pl)
 
 SNP
 
